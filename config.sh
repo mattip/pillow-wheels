@@ -25,13 +25,17 @@ function pre_build {
         # Update to latest zlib for OS X build
         build_new_zlib
     elif [ $MB_ML_VER -eq 2014 ]; then
+        # Override multibuild's get_cmake which tries to install a very old
+        # version of cmake not available on manylinux2014
         yum install -y cmake
-    
+
         function get_cmake {
             echo cmake
         }
 
         function build_xz {
+            # Override multibuild's build_xz since it installs a multibuild1
+            # version which breaks yum
             yum install -y xz-devel
         }
     fi
