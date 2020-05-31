@@ -164,7 +164,7 @@ jobs:
       os: linux
       env:
         - MB_PYTHON_VERSION=pypy3.6-7.3.1
-        - MB_ML_VER=2010
+        - MB_ML_VER=2014
         - DOCKER_TEST_IMAGE=multibuild/xenial_{PLAT}
         - LATEST="true"
     - os: linux
