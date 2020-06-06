@@ -16,6 +16,20 @@ GIFLIB_VERSION=5.1.4
 LIBWEBP_VERSION=1.1.0
 BZIP2_VERSION=1.0.8
 
+if [ -n "$IS_OSX" ]; then
+	function install_pypy {
+		local zip_path=$DOWNLOADS_SDIR/pypy3.6-v7.3.1-osx64.tar.bz2
+		mkdir -p $DOWNLOADS_SDIR
+		wget -nv $PYPY_URL/pypy3.6-v7.3.1-osx64.tar.bz2 -P $DOWNLOADS_SDIR
+		untar $zip_path
+		ln pypy3.6-v7.3.1-osx64/bin/pypy3 pypy3.6-v7.3.1-osx64/bin/pypy
+		PYTHON_EXE=$(realpath pypy3.6-v7.3.1-osx64/bin/pypy)
+		$PYTHON_EXE -mensurepip
+		$PYTHON_EXE -mpip install --upgrade pip setuptools wheel
+		PIP_CMD=pip
+	}
+fi
+
 function pre_build {
     # Any stuff that you need to do before you start building the wheels
     # Runs in the root directory of this repository.
