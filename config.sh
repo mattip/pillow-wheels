@@ -83,6 +83,12 @@ EXP_CODECS="jpg jpg_2000 libtiff zlib"
 EXP_MODULES="freetype2 littlecms2 pil tkinter webp"
 
 function run_tests {
+    if [ -n "$IS_OSX" ]; then
+		brew install openblas
+		echo -e "[openblas]\nlibraries = openblas\nlibrary_dirs = /usr/local/opt/openblas/lib" >> ~/.numpy-site.cfg
+	fi
+	pip install numpy
+	
     # Runs tests on installed distribution from an empty directory
     (cd ../Pillow && run_tests_in_repo)
     # Show supported codecs and modules
