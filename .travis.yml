@@ -84,6 +84,13 @@ jobs:
         - MB_PYTHON_VERSION=3.8
         - PLAT=i686
 
+    - name: "3.6 Xenial 64-bit PyPy"
+      os: linux
+      env:
+        - MB_PYTHON_VERSION=pypy3.6-7.3.1
+        - MB_ML_VER=2010
+        - DOCKER_TEST_IMAGE=multibuild/xenial_{PLAT}
+
     - name: "3.6 Xenial aarch64"
       arch: arm64
       env:
@@ -183,7 +190,7 @@ jobs:
         - PLAT=i686
         - LATEST="true"
 
-    - name: "3.6 Xenial 64-bit PyPy"
+    - name: "3.6 Xenial 64-bit PyPy latest"
       os: linux
       env:
         - MB_PYTHON_VERSION=pypy3.6-7.3.1
